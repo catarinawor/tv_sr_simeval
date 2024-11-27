@@ -332,6 +332,8 @@ pmclfo
 ggsave("figures/LFO_MCMC.png", 
   plot=pmclfo, width = 10, height = 8)
 
+
+
 multi.confusion <- ggarrange(paic,pbic, pmclfo,
                         nrow = 2, ncol = 2)
 multi.confusion

@@ -169,7 +169,6 @@ conf_matrix$dynamics<-case_match(conf_matrix$OM,"decLinearProd_highERLowError"~"
 
 conf_matrix$fullname <- apply( conf_matrix[ , c("ERtrend", "ERerror") ] , 1 , paste , collapse = " " )
 
-unique(conf_matrix$fullname)
 
 
 conf_matrix$fullname<-factor(conf_matrix$fullname, levels=c(
@@ -199,7 +198,7 @@ paic1=ggplot(data = conf_matrix_stat, mapping = aes(x = fullname, y = EM)) +
   xlab("Simulation Scenario")+ylab("Estimation Model")
 paic1
 
-ggsave("figures/AIC_MLE.png", 
+ggsave("figures/AIC_MLE_er.png", 
   plot=paic1, width = 10, height = 8)
 
 conf_matrix_logadyn<-conf_matrix[conf_matrix$dynamics!="stationary",]
@@ -228,7 +227,7 @@ paic2=ggplot(data = conf_matrix_logadyn, mapping = aes(x = OM, y = EM)) +
   xlab("Simulation Scenario")+ylab("Estimation Model")
 paic2
 
-ggsave("figures/AIC_MLE_logatrend.png", 
+ggsave("figures/AIC_MLE_logatrend_er.png", 
   plot=paic2, width = 10, height = 8)
 
 
@@ -248,7 +247,7 @@ pbic=ggplot(data = conf_matrix_stat, mapping = aes(x = fullname, y = EM)) +
   xlab("Simulation Scenario")+ylab("Estimation Model")
 pbic
 
-ggsave("figures/BIC_MLE.png",
+ggsave("figures/BIC_MLE_er.png",
   plot=pbic, width = 10, height = 8)
 
 
@@ -267,7 +266,7 @@ pbic2=ggplot(data = conf_matrix_logadyn, mapping = aes(x = OM, y = EM)) +
   xlab("Simulation Scenario")+ylab("Estimation Model")
 pbic2
 
-ggsave("figures/BIC_MLE_logatrend.png", 
+ggsave("figures/BIC_MLE_logatrend_er.png", 
   plot=pbic2, width = 10, height = 8)
 
 
@@ -414,7 +413,8 @@ pmclfo=ggplot(data =  conf_matrix_lfo_stat, mapping = aes(x = fullname, y = EM))
   mytheme + theme(legend.position="none", axis.text.x = element_text(angle = 45,  hjust=1))+
   xlab("Simulation Scenario")+ylab("Estimation Model")
 pmclfo
-ggsave("../Best-Practices-time-varying-salmon-SR-models/figures/confusion_matrices/base/LFO_MCMC.png", 
+
+ggsave("figures/LFO_MCMC_er.png", 
   plot=pmclfo, width = 10, height = 8)
 
 
@@ -446,5 +446,8 @@ pmclfo2=ggplot(data =  conf_matrix_lfo_logadyn, mapping = aes(x = OM, y = EM)) +
   mytheme + theme(legend.position="none", axis.text.x = element_text(angle = 45,  hjust=1))+
   xlab("Simulation Scenario")+ylab("Estimation Model")
 pmclfo2
+ggsave("figures/LFO_MCMC_logatrend_er.png", 
+  plot=pmclfo, width = 10, height = 8)
+
 
 
